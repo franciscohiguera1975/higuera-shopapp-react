@@ -59,7 +59,7 @@ export default function AppShell() {
             className="flex items-center gap-2 font-bold text-primary"
           >
             <ShoppingBag className="h-5 w-5" />
-            <span>ShopApp</span>
+            <span>ShopApp-Autor: Francisco Higuera</span>
           </Link>
 
           <Separator orientation="vertical" className="h-6" />
