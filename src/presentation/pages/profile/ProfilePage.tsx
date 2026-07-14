@@ -5,9 +5,8 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { toast } from 'sonner'
-import { Loader2, ShieldCheck, ExternalLink } from 'lucide-react'
+import { Loader2, ExternalLink } from 'lucide-react'
 import { ImageUploader } from '@/presentation/components/ImageUploader'
-import { useAuthStore } from '@/presentation/store/auth.store'
 import { useProfileStore } from '@/presentation/store/profile.store'
 import { UserAvatar } from '@/presentation/components/UserAvatar'
 
@@ -21,9 +20,8 @@ import {
 import { Input } from '@/presentation/components/ui/input'
 import { Label } from '@/presentation/components/ui/label'
 import { Button } from '@/presentation/components/ui/button'
-import { Separator } from '@/presentation/components/ui/separator'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/presentation/components/ui/tabs'
-import { Badge } from '@/presentation/components/ui/badge'
+
 
 // ─── Schema de validación ───────────────────────────────────────────────────
 
@@ -38,7 +36,7 @@ type ProfileFormData = z.infer<typeof profileSchema>
 // ─── Componente ─────────────────────────────────────────────────────────────
 
 export default function ProfilePage() {
-  const isStaff = useAuthStore((s) => s.user?.is_staff)
+  //const isStaff = useAuthStore((s) => s.user?.is_staff)
   const { profile, isLoading, isSaving, error, fetchProfile, updateProfile, uploadAvatar } = useProfileStore()
 
   useEffect(() => {
@@ -88,8 +86,8 @@ export default function ProfilePage() {
     )
   }
 
-  function handleAvatarUpload(file: File): Promise<void> {
-    throw new Error('Function not implemented.')
+  async function handleAvatarUpload(file: File) {
+    await uploadAvatar(file)
   }
 
   return (
